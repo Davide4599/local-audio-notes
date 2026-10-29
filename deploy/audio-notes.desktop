@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Audio Notes
+Comment=Registra e trascrivi podcast, audiolibri e riunioni in note e verbali
+Exec=/percorso/audio-notes/open_app.sh
+Icon=/percorso/audio-notes/app/static/icon.svg
+Terminal=false
+Categories=Utility;
+StartupWMClass=audio-notes

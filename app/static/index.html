@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audio Notes</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">◆</span>
+    <span class="brand-name">Audio Notes</span>
+  </div>
+  <div class="topbar-right">
+    <div class="conn-status" id="connStatus">
+      <span class="dot"></span> connesso
+    </div>
+    <button id="shutdownBtn" class="shutdown-btn" title="Chiudi l'app (ferma il server)">Chiudi app</button>
+  </div>
+</header>
+
+<main class="layout">
+
+  <nav class="mode-tabs" id="modeTabs">
+    <button class="mode-tab active" data-mode="book">Raccolta note</button>
+    <button class="mode-tab" data-mode="meeting">Riunione</button>
+  </nav>
+
+  <section class="control-card glass">
+    <div class="control-left">
+      <button id="recordBtn" class="record-btn idle">
+        <span class="record-btn-icon"></span>
+      </button>
+      <div class="control-info">
+        <div class="control-phase" id="phaseLabel">Pronto</div>
+        <div class="control-message" id="messageLabel">Pronto per registrare.</div>
+        <div class="control-devices" id="devicesLabel"></div>
+      </div>
+      <div class="timer" id="timer">00:00</div>
+    </div>
+
+    <div class="control-right" id="titleInputWrap">
+      <div class="field" id="bookField">
+        <label for="bookInput">Libro / raccolta</label>
+        <input id="bookInput" type="text" list="booksList" placeholder="es. Finanza personale, Atomic Habits...">
+        <datalist id="booksList"></datalist>
+      </div>
+      <div class="field" id="participantsField" hidden>
+        <label for="participantsInput">Partecipanti (opzionale)</label>
+        <input id="participantsInput" type="text" placeholder="es. Marco, Giulia, il cliente...">
+      </div>
+      <div class="field">
+        <label for="titleInput"><span id="titleFieldLabel">Titolo episodio</span> (opzionale)</label>
+        <input id="titleInput" type="text" placeholder="Lo deduco io se lo lasci vuoto...">
+      </div>
+      <label class="check-field" id="micField" hidden>
+        <input id="micCheck" type="checkbox" checked>
+        <span>Registra anche il mio microfono <em>(necessario se ascolto in cuffia)</em></span>
+      </label>
+    </div>
+  </section>
+
+  <section class="books-row" id="booksRow">
+    <!-- popolato via JS: raccolte esistenti (modalità raccolta) o riunioni (modalità riunione) -->
+  </section>
+
+  <section class="episodes-row" id="episodesRow">
+    <!-- popolato via JS: episodi della raccolta selezionata -->
+  </section>
+
+  <section class="book-card glass">
+    <div class="book-header">
+      <h1 id="bookTitle">Nessuna raccolta</h1>
+      <p class="book-sub" id="bookSub">Scegli o crea una raccolta per iniziare.</p>
+    </div>
+    <article class="book-content" id="bookContent">
+      <p class="empty">Nessun episodio ancora processato.</p>
+    </article>
+  </section>
+
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

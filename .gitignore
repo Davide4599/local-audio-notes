@@ -1,0 +1,13 @@
+# Dati personali: audio, trascrizioni, verbali e note restano solo su questo computer
+recordings/
+transcripts/
+meetings/
+book/
+
+# Ambiente e file di stato
+venv/
+__pycache__/
+*.pyc
+.record.log
+.recording.pid
+.current_*

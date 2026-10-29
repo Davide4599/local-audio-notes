@@ -1,0 +1,13 @@
+# Copia in ~/.config/systemd/user/ e sostituisci /percorso/audio-notes con la cartella del progetto.
+[Unit]
+Description=Audio Notes - webapp locale
+After=network.target
+
+[Service]
+WorkingDirectory=/percorso/audio-notes
+ExecStart=/percorso/audio-notes/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8765
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target
