@@ -83,8 +83,15 @@ def _fmt_ts(seconds: float) -> str:
 
 # --- Libri (raccolte di note) -------------------------------------------------
 
+def _safe_slug(slug: str) -> str:
+    # lo slug arriva dalla query string: niente separatori, così non si esce dalla cartella
+    if not re.fullmatch(r"[A-Za-z0-9_-]+", slug):
+        raise ValueError(f"slug non valido: {slug!r}")
+    return slug
+
+
 def book_path(slug: str) -> Path:
-    return BOOKS_DIR / f"{slug}.md"
+    return BOOKS_DIR / f"{_safe_slug(slug)}.md"
 
 
 def book_title_from_content(slug: str) -> str:
@@ -117,7 +124,7 @@ def ensure_book(slug: str, title: str) -> None:
 # --- Riunioni ------------------------------------------------------------------
 
 def meeting_path(slug: str) -> Path:
-    return MEETINGS_DIR / f"{slug}.md"
+    return MEETINGS_DIR / f"{_safe_slug(slug)}.md"
 
 
 def list_meetings() -> list[dict]:

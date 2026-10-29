@@ -242,7 +242,10 @@ def _render(path: Path, fallback_title: str = "") -> dict:
 def get_book(slug: str = ""):
     if not slug:
         return {"title": "", "html": "<p class='empty'>Nessuna raccolta selezionata.</p>", "raw": ""}
-    path = pipeline.book_path(slug)
+    try:
+        path = pipeline.book_path(slug)
+    except ValueError:
+        raise HTTPException(400, "Nome non valido.")
     if not path.exists():
         return {"title": "", "html": "<p class='empty'>Nessun episodio ancora processato.</p>", "raw": ""}
     return _render(path, pipeline.book_title_from_content(slug))
@@ -252,7 +255,10 @@ def get_book(slug: str = ""):
 def get_meeting(slug: str = ""):
     if not slug:
         return {"title": "", "html": "<p class='empty'>Nessuna riunione selezionata.</p>", "raw": ""}
-    path = pipeline.meeting_path(slug)
+    try:
+        path = pipeline.meeting_path(slug)
+    except ValueError:
+        raise HTTPException(400, "Nome non valido.")
     if not path.exists():
         return {"title": "", "html": "<p class='empty'>Verbale non trovato.</p>", "raw": ""}
     return _render(path, slug)
